@@ -1,4 +1,5 @@
 	<?php
+	Lib::logCheck();
 	if($_SESSION['level_user'] == 'kalan'){
 	?>
 	<div>

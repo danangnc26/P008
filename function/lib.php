@@ -130,6 +130,30 @@ Class Lib{
    		return $text;
     }
 
+    public static function genParaf($json, $width, $height)
+    {
+    	// $json = $; // From Signature Pad
+    	$x = mt_rand(100000,999999).'.png';
+		$img = sigJsonToImage($json, ['imageSize' => [$width, $height]]);
+		// header('Content-Type: image/png');
+		$z = imagepng($img, 'public/paraf/'.$x);
+
+		if($z){
+			return $x;
+		}
+
+		imagedestroy($img);
+
+		
+    }
+
+    public static function getParafKalan($id)
+    {
+    	$u = new Users();
+    	$r = $u->getParaf($id);
+    	return $r;
+    }
+
     // public static function status($i)
     // {
     // 	switch ($i) {

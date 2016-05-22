@@ -117,13 +117,20 @@
 			<h4>Paraf</h4>
 			<div class="row">
 				<div class="col-md-2">
+					<?php
+					if($_SESSION['paraf'] == null){
+						$x = 'disabled';
+					}else{
+						$x = '';
+					}
+					?>
 					<label style="font-weight:normal">
-						<input <?php echo ($value['paraf'] == '1') ? 'checked' : '' ?> type="radio" name="paraf" value="1" /> Ya
+						<input <?php echo $x ?>  <?php echo ($value['paraf'] == '1') ? 'checked' : '' ?> type="radio" name="paraf" value="1" /> Ya
 					</label>
 				</div>
 				<div class="col-md-3">
 					<label style="font-weight:normal">
-						<input <?php echo ($value['paraf'] == '0') ? 'checked' : '' ?> type="radio" name="paraf" value="0" /> Tidak
+						<input <?php echo $x ?> <?php echo ($value['paraf'] == '0') ? 'checked' : '' ?> type="radio" name="paraf" value="0" /> Tidak
 					</label>
 				</div>
 			</div>
@@ -134,7 +141,7 @@
 					<a href="<?php echo app_base.'index_disposisi' ?>">
 						<button type="button" class="btn btn-danger"><i class="fa fa-arrow-left"></i> Kembali</button>
 					</a>
-					<button class="btn btn-success"><i class="fa fa-send"></i> Kirim Disposisi</button>
+					<button <?php echo $x ?> class="btn btn-success"><i class="fa fa-send"></i> Kirim Disposisi</button>
 				</div>
 			</div>
 		</div>

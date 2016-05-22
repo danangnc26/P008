@@ -22,6 +22,7 @@ class Users extends Core{
 					$_SESSION['id_user'] = $value['id_user'];
 					$_SESSION['nama']	= $value['nama'];
 					$_SESSION['level_user']		= $value['level_user'];
+					$_SESSION['paraf']			= $value['paraf'];
 				}
 				if($_SESSION['level_user'] == 'admin'){
 					Lib::redirect('home');
@@ -88,6 +89,28 @@ class Users extends Core{
 		}else{
 			header($this->back);
 		}
+	}
+
+	public function saveParaf($input)
+	{
+		try {
+			$data = [
+					'paraf'		=> Lib::genParaf($input['output_paraf'], $input['width_paraf'], $input['height_paraf'])
+					];
+			if($this->update($data, $this->primaryKey, $_SESSION['id_user'])){
+				echo Lib::redirectjs(app_base.'logout', 'Paraf anda berhasil disimpan, silahkan login ulang agar paraf dapat muncul.');
+			}else{
+				header($this->back);
+			}
+		} catch (Exception $e) {
+			echo $e->getMessage();
+		}
+	}
+
+	public function getParaf($id)
+	{
+		$d = $this->findBy($this->primaryKey, $id);
+		return $d[0]['paraf'];
 	}
 
 }

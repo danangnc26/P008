@@ -3,6 +3,7 @@ session_start();
 ob_start();
 include_once dirname(__FILE__).DIRECTORY_SEPARATOR.'bootstrap.php';
 include_once dirname(__FILE__).DIRECTORY_SEPARATOR.'lib.php';
+require dirname(__FILE__).DIRECTORY_SEPARATOR.'class/plugin/signature/signature-to-image.php';
 
 function route($page)
 {
@@ -107,6 +108,20 @@ function route($page)
 			break;
 		case 'send_disposisi':
 				$suratmasuk->sendDisposisi($p);
+			break;
+
+		#LAPORAN
+		case 'laporan':
+				include "view/admin/laporan/index.php";
+			break;
+
+		#PARAF
+		case 'paraf':
+				include "view/admin/paraf/index.php";
+			break;
+		case 'save_paraf':
+				$user->saveParaf($p);
+			// echo Lib::genParaf($p['output_paraf'], $p['width_paraf'], $p['height_paraf']);
 			break;
 
 

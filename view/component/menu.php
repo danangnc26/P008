@@ -28,7 +28,7 @@
           </ul>
         </li>
         <li><a href="<?php echo app_base.'index_suratkeluar' ?>">Surat Keluar</a></li>
-        <li><a href="<?php echo app_base.'' ?>">Laporan</a></li>
+        <li><a href="<?php echo app_base.'laporan ' ?>">Laporan</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Data Master <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -50,7 +50,7 @@
             <?php
             if($_SESSION['level_user'] == 'kalan'){
             ?>
-            <li><a href="#">Paraf</a></li>
+            <li><a href="<?php echo app_base.'paraf' ?>">Paraf</a></li>
             <?php
             }
             ?>

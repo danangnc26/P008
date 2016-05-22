@@ -1,5 +1,5 @@
 <?php
-	require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'function\route.php';
+	require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'function/route.php';
 ?>
 <!doctype html>
 <html lang=''>
@@ -33,7 +33,6 @@
 		<div id="container">
 			<div class="row">
 			<?php
-				Lib::logCheck();
 				$page = (isset($_GET['page']))? $_GET['page'] : "main";
 				route($page);
 			?>		

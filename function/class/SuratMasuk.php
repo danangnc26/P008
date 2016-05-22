@@ -66,6 +66,7 @@ class SuratMasuk extends Core{
 			$data = [
 					'instruksi'		=> nl2br($input['instruksi']),
 					'paraf'			=> $input['paraf'],
+					'id_kalan'		=> $_SESSION['id_user'],
 					'status'		=> '1'
 					];
 			if($this->update($data, $this->primaryKey, $input['id_surat_masuk'])){
@@ -77,6 +78,10 @@ class SuratMasuk extends Core{
 						}
 						$mins = $this->raw_write("INSERT INTO tbl_pivot_surat_penerima (id_surat_masuk, id_penerima) VALUES ".implode(',', $d2));
 						if($mins){
+							$pdf_url = base_url.'function/printout.php?id_surat='.$input['id_surat_masuk'];
+							file_get_contents($pdf_url);
+							$send_email = base_url.'function/sendemail.php?id_surat='.$input['id_surat_masuk'];
+							file_get_contents($send_email);
 							Lib::redirect('index_disposisi');
 						}else{
 							header($this->back);		

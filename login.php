@@ -1,5 +1,5 @@
 <?php
-	require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'function\route.php';
+	require_once dirname(__FILE__).DIRECTORY_SEPARATOR.'function/route.php';
 ?>
 <!DOCTYPE html>
 <html>
@@ -108,11 +108,11 @@
 			Username yang anda masukkan salah                    
             </div> -->
 			<p class="field">
-				<input type="text" name="username" placeholder="Username" autofocus>
+				<input type="text" name="username" placeholder="Username" autofocus required>
 				<i class="fa fa-user" style="font-size:25px;"></i>
 			</p>
 				<p class="field">
-		  		<input type="password" name="password" placeholder="Password">
+		  		<input type="password" name="password" placeholder="Password" required>
 		  		<i class="fa fa-lock" style="font-size:25px;"></i>
 			</p>        
 			<p class="submit">
