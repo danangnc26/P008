@@ -12,8 +12,8 @@ class Users extends Core{
 	public function doLogin($input)
 	{
 		try {
-			$username = mysql_real_escape_string($input['username']);
-			$password = mysql_real_escape_string($input['password']);
+			$username = $this->con()->real_escape_string($input['username']);
+			$password = $this->con()->real_escape_string($input['password']);
 
 			$result = $this->findAll("where username='".$username."' and password='".md5($password)."'");
 			if(!empty($result) or $result != false){
