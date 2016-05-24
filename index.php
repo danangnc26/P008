@@ -42,10 +42,10 @@
 </section>
 <footer>
 	<div class="pull-left">
-		Copyright &copy; 2015 TNDE - Badan Pemeriksa Keuangan Republik Indonesia
+		Copyright &copy; <?php echo date("Y") ?> SISTEM INFORMASI DISPOSISI SURAT TATA NASKAH DINAS ELEKTRONIK 
 	</div>
 	<div class="pull-right">
-		Powered - Digimedia
+		
 	</div>
 </footer>
 </body>

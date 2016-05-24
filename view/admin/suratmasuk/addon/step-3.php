@@ -55,23 +55,24 @@
 						</td>
 					</tr>
 					<tr>
-						<td>
+						<td style="vertical-align:top">
 							Isi Ringkas
 						</td>
-						<td>:</td>
-						<td id="text2-isi_ringkas">
+						<td style="vertical-align:top">:</td>
+						<td style="vertical-align:top" id="text2-isi_ringkas">
 							
 						</td>
 					</tr>
 					<tr>
-						<td>
+						<td style="vertical-align:top">
 							Lampiran Surat
 						</td>
-						<td>:</td>
-						<td>
-							<a href="#">
+						<td style="vertical-align:top">:</td>
+						<td style="vertical-align:top">
+						<ol style="margin-left:18px;" class="txt_lampiran"></ol>
+							<!-- <a href="#">
 								<i class="fa  fa-paperclip"></i> Lampiran.pdf
-							</a>
+							</a> -->
 						</td>
 					</tr>
 				</table>

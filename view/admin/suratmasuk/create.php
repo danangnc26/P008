@@ -8,12 +8,12 @@
 	<div class="col-md-12">
 		<ol class="progtrckr" data-progtrckr-steps="3">
 		    <li id="line-step-1" class="progtrckr-current">Input Surat Masuk</li>
-		    <li id="line-step-2" class="progtrckr-todo">Scan Dokumen</li>
+		    <li id="line-step-2" class="progtrckr-todo">Lampiran Surat Masuk</li>
 		    <!-- <li id="line-step-" class="progtrckr-todo">Disposisi</li> -->
 		    <li id="line-step-3" class="progtrckr-todo">Kirim Surat</li>
 		</ol>
 	</div>
-	<form method="post" action="<?php echo app_base.'save_suratmasuk' ?>">
+	<form method="post" action="<?php echo app_base.'save_suratmasuk' ?>" enctype="multipart/form-data">
 		<div id="surat-step-1">
 			<?php include "view/admin/suratmasuk/addon/step-1.php" ?>
 		</div>
@@ -56,13 +56,13 @@
 			$('.button-next-3').hide();
 			// $('button#next-1').attr('id', 'next-2');
 
-			$('td#text-no_agenda').text($('input[name=no_agenda]').val());
-			$('td#text-no_surat_masuk').text($('input[name=no_surat_masuk]').val());
-			$('td#text-nama_pengirim').text($('input[name=nama_pengirim]').val());
-			$('td#text-perihal').text($('input[name=perihal]').val());
-			$('td#text-sifat_surat').text($('select[name=sifat_surat] option:selected').val());
-			$('td#text-tanggal_diterima').text($('input[name=tanggal_diterima]').val());
-			$('td#text-isi_ringkas').text($('textarea[name=isi_ringkas]').val());
+			$('td#text-no_agenda').html($('input[name=no_agenda]').val());
+			$('td#text-no_surat_masuk').html($('input[name=no_surat_masuk]').val());
+			$('td#text-nama_pengirim').html($('input[name=nama_pengirim]').val());
+			$('td#text-perihal').html($('input[name=perihal]').val());
+			$('td#text-sifat_surat').html($('select[name=sifat_surat] option:selected').val());
+			$('td#text-tanggal_diterima').html($('input[name=tanggal_diterima]').val());
+			$('td#text-isi_ringkas').html(nl2br($('textarea[name=isi_ringkas]').val()));
 		});
 		$('button#back-1').click(function(){
 			$('#surat-step-1').show();
@@ -90,13 +90,13 @@
 			$('.button-next-2').hide();
 			$('.button-next-1').hide();
 
-			$('td#text2-no_agenda').text($('input[name=no_agenda]').val());
-			$('td#text2-no_surat_masuk').text($('input[name=no_surat_masuk]').val());
-			$('td#text2-nama_pengirim').text($('input[name=nama_pengirim]').val());
-			$('td#text2-perihal').text($('input[name=perihal]').val());
-			$('td#text2-sifat_surat').text($('select[name=sifat_surat] option:selected').val());
-			$('td#text2-tanggal_diterima').text($('input[name=tanggal_diterima]').val());
-			$('td#text2-isi_ringkas').text($('textarea[name=isi_ringkas]').val());
+			$('td#text2-no_agenda').html($('input[name=no_agenda]').val());
+			$('td#text2-no_surat_masuk').html($('input[name=no_surat_masuk]').val());
+			$('td#text2-nama_pengirim').html($('input[name=nama_pengirim]').val());
+			$('td#text2-perihal').html($('input[name=perihal]').val());
+			$('td#text2-sifat_surat').html($('select[name=sifat_surat] option:selected').val());
+			$('td#text2-tanggal_diterima').html($('input[name=tanggal_diterima]').val());
+			$('td#text2-isi_ringkas').html(nl2br($('textarea[name=isi_ringkas]').val()));
 		});
 		$('button#back-2').click(function(){
 			$('#surat-step-1').hide();
@@ -109,6 +109,11 @@
 			$('.button-next-1').hide();
 			$('.button-next-3').hide();
 		});
+
+		function nl2br (str, is_xhtml) {   
+		    var breakTag = (is_xhtml || typeof is_xhtml === 'undefined') ? '<br />' : '<br>';    
+		    return (str + '').replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1'+ breakTag +'$2');
+		}
 
 
 	</script>

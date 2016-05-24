@@ -73,23 +73,34 @@
 						</td>
 					</tr>
 					<tr>
-						<td>
+						<td style="vertical-align:top">
 							Isi Ringkas
 						</td>
-						<td>:</td>
-						<td>
+						<td style="vertical-align:top">:</td>
+						<td style="vertical-align:top">
 							<?php echo $value['isi_ringkas'] ?>
 						</td>
 					</tr>
 					<tr>
-						<td>
+						<td style="vertical-align:top">
 							Lampiran Surat
 						</td>
-						<td>:</td>
-						<td>
-							<a href="#">
-								<i class="fa  fa-paperclip"></i> Lampiran.pdf
+						<td style="vertical-align:top">:</td>
+						<td style="vertical-align:top">
+							<ol>
+							<?php
+							if(Lib::getLampiran($value['id_surat_masuk']) == null){
+
+							}else{
+								foreach (Lib::getLampiran($value['id_surat_masuk']) as $key => $vl) {
+							?>
+							<a target="_blank" href="<?php echo base_url.'public/lampiran/'.$vl['nama_lampiran'] ?>">
+								<li style="margin-left:18px;"><i class="fa  fa-paperclip"></i> <?php echo $vl['nama_lampiran'] ?></li>
 							</a>
+							<?php
+							}}
+							?>
+							</ol>
 						</td>
 					</tr>
 				</table>

@@ -80,6 +80,7 @@ function route($page)
 			break;
 		case 'save_suratmasuk':
 				$suratmasuk->saveSuratMasuk($p);
+				// var_dump(Lib::upload($p));
 			break;
 		case 'delete_suratmasuk':
 				$suratmasuk->deleteSuratMasuk($p);
@@ -87,6 +88,7 @@ function route($page)
 
 		#SURAT KELUAR
 		case 'index_suratkeluar':
+				Lib::setNotifReaded();
 				$data = $suratmasuk->indexSuratKeluar();
 				include "view/admin/suratkeluar/index.php";
 			break;
@@ -99,7 +101,12 @@ function route($page)
 		#KALAN
 		#Disposisi
 		case 'index_disposisi':
-				$data = $suratmasuk->indexSuratMasukKalan();
+				// $data = $suratmasuk->indexSuratMasukKalan();
+				if(!isset($_GET['status'])){
+					$data =	$suratmasuk->indexSuratMasukKalanByStatus('0');
+				}else{
+					$data =	$suratmasuk->indexSuratMasukKalanByStatus($_GET['status']);
+				}
 				include "view/kalan/disposisi/index.php";
 			break;
 		case 'disposisi':
@@ -112,6 +119,11 @@ function route($page)
 
 		#LAPORAN
 		case 'laporan':
+				if(isset($_GET['tanggal_dari']) && isset($_GET['tanggal_sampai'])){
+					$data = $suratmasuk->getLaporan($_GET['tanggal_dari'], $_GET['tanggal_sampai']);
+				}else{
+					$data = null;
+				}
 				include "view/admin/laporan/index.php";
 			break;
 
@@ -124,15 +136,21 @@ function route($page)
 			// echo Lib::genParaf($p['output_paraf'], $p['width_paraf'], $p['height_paraf']);
 			break;
 
+		case 'get_real_notif':
+				
+			break;
 
-
-		case 'tes':
-				var_dump(Lib::genNoAgenda());
+		#PASSWORD
+		case 'ubah_password':
+				include "view/component/ubah_password.php";
+			break;
+		case 'save_password':
+				$user->updatePassword($p);
 			break;
 
 		case 'main' :
 				default : 
-				// header("location:index.php");
+				Lib::redirect('home');
 			break;
 	}
 }

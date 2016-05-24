@@ -54,7 +54,7 @@
             <?php
             }
             ?>
-            <li><a href="#">Ubah Password</a></li>
+            <li><a href="<?php echo app_base.'ubah_password' ?>">Ubah Password</a></li>
             <li role="separator" class="divider"></li>
             <li><a href="<?php echo app_base.'logout' ?>">Keluar</a></li>
           </ul>

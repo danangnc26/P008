@@ -12,8 +12,8 @@ class Users extends Core{
 	public function doLogin($input)
 	{
 		try {
-			$username = mysql_real_escape_string($input['username']);
-			$password = mysql_real_escape_string($input['password']);
+			$username = $this->con()->real_escape_string($input['username']);
+			$password = $this->con()->real_escape_string($input['password']);
 
 			$result = $this->findAll("where username='".$username."' and password='".md5($password)."'");
 			if(!empty($result) or $result != false){
@@ -88,6 +88,21 @@ class Users extends Core{
 			Lib::redirect('index_master_user');
 		}else{
 			header($this->back);
+		}
+	}
+
+	public function updatePassword($input)
+	{
+		try {
+			$data = ['password' => md5($input['password'])];
+			if($this->update($data, $this->primaryKey, $_SESSION['id_user'])){
+				echo Lib::redirectjs(app_base.'logout', 'Password Anda Berhasil diubah, silahkan login ulang.');
+			}else{
+				header($this->back);
+			}
+
+		} catch (Exception $e) {
+			echo $e->getMessage();
 		}
 	}
 

@@ -98,11 +98,17 @@ Class Lib{
     {
     	$surat = new SuratMasuk();
     	if($o){
-    		$result = $surat->raw("SELECT COUNT(id_surat_masuk) as jml FROM tbl_surat_masuk WHERE status=1");
+    		$result = $surat->raw("SELECT COUNT(id_surat_masuk) as jml FROM tbl_surat_masuk WHERE status=1 and notif_readed=0");
     	}else{
     		$result = $surat->raw("SELECT COUNT(id_surat_masuk) as jml FROM tbl_surat_masuk WHERE status=0");
     	}
     	return $result[0]['jml'];
+    }
+
+    public static function setNotifReaded()
+    {
+    	$surat = new SuratMasuk();
+    	$surat->raw_write("UPDATE tbl_surat_masuk SET notif_readed=1 where status=1");
     }
 
     public static function getListPenerima()
@@ -153,6 +159,59 @@ Class Lib{
     	$r = $u->getParaf($id);
     	return $r;
     }
+
+    public static function getLampiran($id)
+    {
+    	$s = new SuratMasuk();
+    	$result = $s->raw("SELECT * FROM tbl_lampiran where id_surat_masuk='".$id."'");
+    	return $result;
+    }
+
+    public static function upload($post)
+	{
+		if(isset($post) and $_SERVER['REQUEST_METHOD'] == "POST")
+		{
+			$path = "public/lampiran/";
+
+			if($post['lampiran_surat_masuk'] == 'upload'){
+
+				$name = $_FILES['file_upload']['name'];
+				$size = $_FILES['file_upload']['size'];
+				$tmp = $_FILES['file_upload']['tmp_name'];
+				if(sizeof($_FILES['file_upload']['name']) > 1){
+						foreach ($_FILES['file_upload']['name'] as $key => $value) {
+							$d1[] = $value;
+						}
+						foreach ($_FILES['file_upload']['tmp_name'] as $key2 => $value2) {
+							$d2[] = $value2;
+						}
+						$d3 = array_combine($d1, $d2);
+						foreach ($d3 as $key3 => $value3) {
+							move_uploaded_file($value3, $path.$key3);
+						}
+				}else{
+					move_uploaded_file($tmp[0], $path.$name[0]); //Stores the image in the uploads folder	
+				}
+
+			}
+			
+			if($post['lampiran_surat_masuk'] == 'scan'){
+				// $name = 'DOC_123456.pdf';
+				if(sizeof($post['file_scan']) > 1){
+					foreach ($post['file_scan'] as $nv) {
+						copy(sys_get_temp_dir().'/'.$nv, $path.$nv);
+						$name[] = $nv;
+					}
+
+				}else{
+					copy(sys_get_temp_dir().'/'.$post['file_scan'][0], $path.$post['file_scan'][0]);
+					$name[] = $post['file_scan'][0];
+				}
+			}
+			
+		}
+		return ['status' => true, 'nama_file' => $name];
+	}
 
     // public static function status($i)
     // {

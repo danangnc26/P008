@@ -53,6 +53,7 @@
 						<!-- <input name="sifat_surat" type="text" value=""> -->
 						<select name="sifat_surat">
 							<option value="Umum">Umum</option>
+							<option value="Segera">Segera</option>
 						</select>
 					</td>
 				</tr>
@@ -72,12 +73,12 @@
 					</td>
 				</tr>
 				<tr>
-					<td>
+					<td style="vertical-align:top">
 						Isi Ringkas
 					</td>
-					<td>:</td>
-					<td>
-						<textarea name="isi_ringkas" style="resize:none"></textarea>
+					<td style="vertical-align:top">:</td>
+					<td style="vertical-align:top">
+						<textarea name="isi_ringkas" style="resize:none" rows="5"></textarea>
 					</td>
 				</tr>
 				<tr>

@@ -8,6 +8,7 @@ $mail = new PHPMailer;
 $surat = new SuratMasuk();
 $data1 = $surat->findSuratMasuk($_GET['id_surat']);
 $data2 = $surat->raw("SELECT tbl_penerima.email, tbl_penerima.nama, tbl_pivot_surat_penerima.id_surat_masuk, tbl_penerima.id_penerima FROM tbl_pivot_surat_penerima INNER JOIN tbl_penerima ON tbl_pivot_surat_penerima.id_penerima = tbl_penerima.id_penerima where tbl_pivot_surat_penerima.id_surat_masuk = '".$_GET['id_surat']."'");
+$data3 = $surat->raw("SELECT * FROM tbl_lampiran where id_surat_masuk='".$_GET['id_surat']."'");
 //$mail->SMTPDebug = 3;                               // Enable verbose debug output
 
 $mail->isSMTP();
@@ -50,6 +51,13 @@ if($data1 == null){
 		}
 
 		$mail->addAttachment(dirname(__DIR__).DIRECTORY_SEPARATOR.'public/lembar_disposisi/'.str_replace('/', '_', $value1['no_agenda']).'.pdf');
+		if($data3 == null){
+		}else{
+			foreach ($data3 as $key3 => $value3) {
+				$mail->addAttachment(dirname(__DIR__).DIRECTORY_SEPARATOR.'public/lampiran/'.$value3['nama_lampiran']);
+			}
+		}
+
 		$mail->isHTML(true);                                  // Set email format to HTML
 
 		$mail->Subject = 'Disposisi No. Agenda : '.$value1['no_agenda'];

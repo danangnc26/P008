@@ -17,7 +17,7 @@ $html_head .= '<html>';
 $html_head .= '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>';
 $html_head .= '<head>';
 $html_head .= '<title>Cetak Disposisi</title>';
-$html_head .= '<style type="text/css">body{font-family:  sans-serif;} hr{ border-bottom: 5px double #000; } h2{ text-align: center; margin: 0px; text-transform: uppercase; font-weight: bold; } table.data{ border: 1px solid #000; width: 100%; border-collapse: collapse; margin-top: 20px; } table.data td{ border: 1px solid #000; } table.data th{ border-left: 1px solid #000; border-right: 1px solid #000; border-bottom: 5px double #000; } </style>';
+$html_head .= '<style type="text/css">body{font-family:  sans-serif;} .rght{float:right; padding:20px; font-size:20px; border:1px solid #000; background: #ccc; color: #000; text-transform: uppercase;} hr{ border-bottom: 5px double #000; } h2{ text-align: center; margin: 0px; text-transform: uppercase; font-weight: bold; } table.data{ border: 1px solid #000; width: 100%; border-collapse: collapse; margin-top: 20px; } table.data td{ border: 1px solid #000; } table.data th{ border-left: 1px solid #000; border-right: 1px solid #000; border-bottom: 5px double #000; } </style>';
 $html_head .= '</head>';
 
 }else{
@@ -28,10 +28,12 @@ $html_head .= '<html>';
 $html_head .= '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>';
 $html_head .= '<head>';
 $html_head .= '<title>Cetak Disposisi</title>';
-$html_head .= '<style type="text/css">body{font-family:  sans-serif;} hr{ border-bottom: 5px double #000; } h2{ text-align: center; margin: 0px; text-transform: uppercase; font-weight: bold; } table.data{ border: 1px solid #000; width: 100%; border-collapse: collapse; margin-top: 20px; } table.data td{ border: 1px solid #000; } table.data th{ border-left: 1px solid #000; border-right: 1px solid #000; border-bottom: 5px double #000; } </style>';
+$html_head .= '<style type="text/css">body{font-family:  sans-serif;} h2.rght{text-align:center; position:relative; width:15%; border:1px solid #000; float:right; padding:20px; font-size:25px; background:#ddd;} hr{ border-bottom: 5px double #000; } h2{ text-align: center; margin: 0px; text-transform: uppercase; font-weight: bold; } table.data{ border: 1px solid #000; width: 100%; border-collapse: collapse; margin-top: 20px; } table.data td{ border: 1px solid #000; } table.data th{ border-left: 1px solid #000; border-right: 1px solid #000; border-bottom: 5px double #000; } </style>';
 $html_head .= '</head>';
 
 $html_body = '<body>';
+$html_body .= '<h2 class="rght">'.$value['sifat_surat'].'</h2>';
+$html_body .= '<br><br><br><br>';
 $html_body .= '<h2>Lembar Disposisi</h2>';
 $html_body .= '<hr>';
 $html_body .= '<table width="100%">';

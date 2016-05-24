@@ -1,5 +1,14 @@
 	<!-- BOOTSTRAP -->
 	<script src="<?php echo base_url ?>assets/js/jquery-1.11.3.min.js"></script>
+	<?php
+	if(!empty($_SESSION) && $_SESSION['level_user'] == 'kalan'){
+
+	?>
+	<!-- http://ajax.googleapis.com/ajax/libs/jquerymobile/1.4.5/jquery.mobile.min.js -->
+	<script type="text/javascript" src=""></script>
+	<?php
+	}
+	?>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="<?php echo base_url ?>assets/css/bootstrap/bootstrap.min.css">
 

@@ -19,9 +19,7 @@
 			</div>
 			<div class="col-md-12">
 				<form id ="srt1" action="<?php echo app_base.'delete_suratmasuk' ?>" method="post">
-	            <!-- <button class="btn btn-primary"><i class="icon ion-android-create"></i>Ubah Data</button> -->
 				<button onclick="return confirm('Hapus data yang dipilih?')" class="btn btn-danger"><i class="fa fa-trash"></i> Hapus Data</button>
-				<button class="btn btn-default"><i class="fa fa-refresh"></i> Refresh Tabel</button>
 				<br><br>
 				<table id="data" class="table table-bordered table-striped">
 	                    <thead>

@@ -24,6 +24,11 @@ class SuratMasuk extends Core{
 		return $this->findAll();
 	}
 
+	public function indexSuratMasukKalanByStatus($st)
+	{
+		return $this->findBy('status', $st);
+	}
+
 	public function saveSuratMasuk($input)
 	{
 		try {
@@ -32,19 +37,48 @@ class SuratMasuk extends Core{
 					'no_surat_masuk'	 => $input['no_surat_masuk'],
 					'nama_pengirim'		 => $input['nama_pengirim'],
 					'perihal'			 => $input['perihal'],
-					'isi_ringkas'		 => $input['isi_ringkas'],
+					'isi_ringkas'		 => nl2br($input['isi_ringkas']),
 					'tanggal_diterima'	 => Lib::dateInd($input['tanggal_diterima']),
 					'sifat_surat'		 => $input['sifat_surat']
 					];
 			if($this->save($data)){
-				echo '<script>if(confirm("Data berhasil disimpan, input lagi?")){location.replace("'.app_base.'create_suratmasuk")}else{location.replace("'.app_base.'index_suratmasuk")}</script>';
+				if(isset($input['lampiran_surat_masuk'])){
+					$lst_id = $this->con()->insert_id;
+					$upl = Lib::upload($input);
+					if($upl['status']){
+						if($input['lampiran_surat_masuk'] == 'upload'){
+							foreach ($upl['nama_file'] as $nf) {
+								$d2[] = "('".$lst_id."', '".$nf."')";
+							}
+						}
+						if($input['lampiran_surat_masuk'] == 'scan'){
+							$d2[] = "('".$lst_id."', '".$upl['nama_file']."')";
+						}
+						$uf = $this->raw_write("INSERT INTO tbl_lampiran (id_surat_masuk, nama_lampiran) VALUES ".implode(',', $d2));
+						if($uf){
+							echo '<script>if(confirm("Data berhasil disimpan, input lagi?")){location.replace("'.app_base.'create_suratmasuk")}else{location.replace("'.app_base.'index_suratmasuk")}</script>';
+						}else{
+							echo '<script>if(confirm("Data berhasil disimpan, tetapi nama lampiran tida dapat disimpan, input lagi?")){location.replace("'.app_base.'create_suratmasuk")}else{location.replace("'.app_base.'index_suratmasuk")}</script>';
+						}
+					}else{
+						echo '<script>if(confirm("Data berhasil disimpan, tetapi lampiran tidak dapat diupload, input lagi?")){location.replace("'.app_base.'create_suratmasuk")}else{location.replace("'.app_base.'index_suratmasuk")}</script>';	
+					}
+				}else{
+					echo '<script>if(confirm("Data berhasil disimpan, input lagi?")){location.replace("'.app_base.'create_suratmasuk")}else{location.replace("'.app_base.'index_suratmasuk")}</script>';
+				}
 				// Lib::redirect('index_suratmasuk');
 			}else{
-				echo "gagal";
+				// echo "gagal";
+				header($this->back);
 			}
 		} catch (Exception $e) {
 			echo $e->getMessage();
 		}
+	}
+
+	public function getLaporan($dari, $sampai)
+	{
+		return $this->findAll("where (tanggal_diterima BETWEEN '".Lib::dateInd($dari)."' AND '".Lib::dateInd($sampai)."') and status=1");
 	}
 
 	public function deleteSuratMasuk($input)

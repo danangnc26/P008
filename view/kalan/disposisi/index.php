@@ -6,8 +6,21 @@
 				<hr class="two"></hr>
 			</div>
 			<div class="col-md-12">
-				<button class="btn btn-default"><i class="fa fa-refresh"></i> Refresh Tabel</button>
-				<br><br>
+				<div class="row">
+					<div class="col-md-4">
+						<div class="btn-group btn-group-justified" role="group" aria-label="...">
+						  <div class="btn-group" role="group">
+						    	<button onclick="location.replace('<?php echo app_base.'index_disposisi&status=0' ?>')" type="button" class="btn btn-warning btn-small">Menunggu Disposisi</button>
+						  </div>
+						  <div class="btn-group" role="group">
+						    	<button onclick="location.replace('<?php echo app_base.'index_disposisi&status=1' ?>')" type="button" class="btn btn-success btn-small">Selesai Disposisi</button>
+						  </div>
+						</div>
+					</div>	
+				</div>
+				
+				<!-- <button class="btn btn-default"><i class="fa fa-refresh"></i> Refresh Tabel</button> -->
+				
 				<table id="data" class="table table-bordered table-striped">
 	                    <thead>
 	                      <tr>
@@ -79,7 +92,7 @@
 		      null,
 		      { "bSortable": false}
         	],
-        	"order" : [0, "asc"],
+        	"order" : [6, "asc"],
     	});
       });
 </script>

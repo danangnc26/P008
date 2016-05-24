@@ -742,7 +742,7 @@
 		padding: 0;
 		width: 100%;
 	}
-	input[type="text"],select,input[type="email"], input[type="date"], textarea, #contact input[type="email"], #contact input[type="tel"], #contact input[type="url"], #contact textarea {
+	input[type="text"],input[type="password"], select,input[type="email"], input[type="date"], textarea, #contact input[type="email"], #contact input[type="tel"], #contact input[type="url"], #contact textarea {
 		width:100%;
 		border:1px solid #CCC;
 		background:#FFF;
@@ -975,7 +975,7 @@
 	    	min-width: 50%;
 	    }
 	    
-	    input[type="text"], select,input[type="email"], input[type="date"], textarea, #contact input[type="email"], #contact input[type="tel"], #contact input[type="url"], #contact textarea {
+	    input[type="text"], input[type="password"], select,input[type="email"], input[type="date"], textarea, #contact input[type="email"], #contact input[type="tel"], #contact input[type="url"], #contact textarea {
 			width:100%;
 			border:1px solid #CCC;
 			background:#FFF;
