@@ -13,7 +13,7 @@
 <body>
 	<?php
 	
-	if(file_exist(dirname(__DIR__).DIRECTORY_SEPARATOR."public/lampiran")){
+	if(file_exists(dirname(__DIR__).DIRECTORY_SEPARATOR."public/lampiran")){
 		echo "ada";
 	}else{
 		echo "tak";
