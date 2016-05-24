@@ -171,7 +171,7 @@ Class Lib{
 	{
 		if(isset($post) and $_SERVER['REQUEST_METHOD'] == "POST")
 		{
-			$path = "public/lampiran/";
+			$path = dirname(__DIR__).DIRECTORY_SEPARATOR."public/lampiran/";
 
 			if($post['lampiran_surat_masuk'] == 'upload'){
 
