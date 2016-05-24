@@ -156,7 +156,7 @@ function route($page)
 }
 
 define("index", "index.php");
-define("base_url", server_name()."/p7-ita/");
+define("base_url", server_name()."/sisidi/");
 define("app_base", index."?page=");
 
 function server_name()
