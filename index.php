@@ -11,6 +11,15 @@
    	<?php include "view/component/included-file.php" ?>
 </head>
 <body>
+	<?php
+	
+	if(file_exist(dirname(__DIR__).DIRECTORY_SEPARATOR."public/lampiran)){
+		echo "ada";
+	}else{
+		echo "tak";
+	}
+	
+	?>
 	<header>
 		<div id="header-left">
 			<div class="logo">
