@@ -4,22 +4,13 @@
 <!doctype html>
 <html lang=''>
 <head>
-	<title>Sistem Informasi Disposisi Surat Tata Naskah Dinas Elektronik</title>
+	<title>S . I . S . I . D . I</title>
 	<meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
    	<?php include "view/component/included-file.php" ?>
 </head>
 <body>
-	<?php
-	
-	if(file_exists(dirname(__DIR__).DIRECTORY_SEPARATOR."public/lampiran")){
-		echo "ada";
-	}else{
-		echo "tak";
-	}
-	
-	?>
 	<header>
 		<div id="header-left">
 			<div class="logo">

@@ -52,7 +52,10 @@ class SuratMasuk extends Core{
 							}
 						}
 						if($input['lampiran_surat_masuk'] == 'scan'){
-							$d2[] = "('".$lst_id."', '".$upl['nama_file']."')";
+							// $d2[] = "('".$lst_id."', '".$upl['nama_file']."')";
+							foreach ($upl['nama_file'] as $nf2) {
+								$d2[] = "('".$lst_id."', '".$nf2."')";
+							}
 						}
 						$uf = $this->raw_write("INSERT INTO tbl_lampiran (id_surat_masuk, nama_lampiran) VALUES ".implode(',', $d2));
 						if($uf){

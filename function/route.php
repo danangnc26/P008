@@ -4,6 +4,7 @@ ob_start();
 include_once dirname(__FILE__).DIRECTORY_SEPARATOR.'bootstrap.php';
 include_once dirname(__FILE__).DIRECTORY_SEPARATOR.'lib.php';
 require dirname(__FILE__).DIRECTORY_SEPARATOR.'class/plugin/signature/signature-to-image.php';
+include_once dirname(__FILE__).DIRECTORY_SEPARATOR.'../config/Config.php';
 
 function route($page)
 {
@@ -156,7 +157,7 @@ function route($page)
 }
 
 define("index", "index.php");
-define("base_url", server_name()."/sisidi/");
+define("base_url", server_name()."/".Config::getConfig('rootdir'));
 define("app_base", index."?page=");
 
 function server_name()

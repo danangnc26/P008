@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Elektronik Tata Naskah Dinas</title>
+	<title>S . I . S . I . D . I</title>
 	<?php include "view/component/included-file.php" ?>
 	
 	<style type="text/css">
@@ -119,10 +119,7 @@
 		    	<button class="btn btn-primary" type="submit"><i class="fa  fa-sign-in"></i> Masuk</button>
 			</p>
 	</form>
-	<footer>Jl. Perintis Kemerdekaan, Pudak Payung Banyumanik Semarang
-	<br>Copyright &copy; 2015 TNDE - Badan Pemeriksa Keuangan RI Perwakilan Jateng
-<br>
-Powered by - Digimedia
+	<footer>Copyright &copy; <?php echo date("Y") ?> SISTEM INFORMASI DISPOSISI SURAT TATA NASKAH DINAS ELEKTRONIK 
 </footer>
 </body>
 </html>

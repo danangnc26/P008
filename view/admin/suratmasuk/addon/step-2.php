@@ -11,72 +11,84 @@
         }
         var neme = nm_fl_scn();
         
-        function scanToPdfWithThumbnails() {
-            asprise_scanner_js_scan(displayImagesOnPage,
+        function scanToPDf() {
+            asprise_scanner_js_scan(displayResponseOnPage,
                     {
                         "output_settings": [
                             {
                                 "type": "save",
                                 "format": "pdf",
                                 // "pdf_text_line": "By ${USERNAME} on ${DATETIME}",
-                                "save_path": "${TMP}\\"+neme+"${EXT}"
-                            },
-                            {
-                                "type": "return-base64-thumbnail",
-                                "format": "jpg",
-
-
-                                "thumbnail_height": 200
+                                "save_path": "${TMP}\\tmp_${TMS}${EXT}"
                             }
                         ]
                     }
             );
         }
-        /** Processes the scan result */
-        function displayImagesOnPage(successful, mesg, response) {
-            if(!successful) { // On error
-                console.error('Failed: ' + mesg);
-                return;
-            }
-            if(successful && mesg != null && mesg.toLowerCase().indexOf('user cancel') >= 0) { // User cancelled.
-                console.info('User cancelled');
-                return;
-            }
-            var scannedImages = getScannedImages(response, true, false); // returns an array of ScannedImage
-            for(var i = 0; (scannedImages instanceof Array) && i < scannedImages.length; i++) {
-                var scannedImage = scannedImages[i];
-                processOriginal(scannedImage);
-            }
-            var thumbnails = getScannedImages(response, false, true); // returns an array of ScannedImage
-            for(var i = 0; (thumbnails instanceof Array) && i < thumbnails.length; i++) {
-                var thumbnail = thumbnails[i];
-                processThumbnail(thumbnail);
-            }
-        }
-        /** Images scanned so far. */
-        var imagesScanned = [];
-        /** Processes an original */
-        function processOriginal(scannedImage) {
-            imagesScanned.push(scannedImage);
-        }
-        /** Processes a thumbnail */
-        function processThumbnail(scannedImage) {
-            // var elementImg = createDomElementFromModel( {
-            //     'name': 'img',
-            //     'attributes': {
-            //         'class': 'scanned',
-            //         'src': scannedImage.src
-            //     }
-            // });
-            // document.getElementById('images').appendChild(elementImg);
-            var tz = '<a href="#"><li><i class="fa  fa-paperclip"></i> ' +neme+ '.pdf';
-            var tf = '<input type="hidden" name="file_scan[]" value="'+neme+'.pdf">';
-            var nd = '</li></a>';
-            $('.thmb').append(tz+tf+nd);
-			$('ol.txt_lampiran').append(tz+nd);
+
+        var o3 = 1;
+      	function displayResponseOnPage(successful, mesg, response) {
+      	   no3 = (i++);
+		   // document.getElementById('server_response').innerHTML = getSaveResponse(response);
+		   var nm = getSaveResponse(response);
+		   var nm2 = nm.split("\\");
+		   var nm3 = nm2[nm2.length - 1];
+		   var nf  = nm3.replace('"]', '');
+		   console.log(nf);
+
+		   var dz = "'.sc_lm_"+no3+"'";
+		   // var dv
+		   var tz = "<li class='sc_lm_"+no3+"'><a href='#'><i class='fa  fa-paperclip'></i>" +nf.replace("tmp_", "doc_");
+           var tf = '<input type="hidden" name="file_scan[]" value="'+nf+'">';
+           var nd = '</a> <i style="margin-left:20px; cursor:pointer" onclick="$('+dz+').remove()" class="fa fa-close"></i></li>';
+           $('.thmb').append(tz+tf+nd);
+		   $('ol.txt_lampiran').append(tz+nd);
+		}
+   //      /** Processes the scan result */
+   //      function displayImagesOnPage(successful, mesg, response) {
+   //          if(!successful) { // On error
+   //              console.error('Failed: ' + mesg);
+   //              return;
+   //          }
+   //          if(successful && mesg != null && mesg.toLowerCase().indexOf('user cancel') >= 0) { // User cancelled.
+   //              console.info('User cancelled');
+   //              return;
+   //          }
+   //          var scannedImages = getScannedImages(response, true, false); // returns an array of ScannedImage
+   //          for(var i = 0; (scannedImages instanceof Array) && i < scannedImages.length; i++) {
+   //              var scannedImage = scannedImages[i];
+   //              processOriginal(scannedImage);
+   //          }
+   //          var thumbnails = getScannedImages(response, false, true); // returns an array of ScannedImage
+   //          for(var i = 0; (thumbnails instanceof Array) && i < thumbnails.length; i++) {
+   //              var thumbnail = thumbnails[i];
+   //              processThumbnail(thumbnail);
+   //          }
+   //      }
+   //      /** Images scanned so far. */
+   //      var imagesScanned = [];
+   //      /** Processes an original */
+   //      function processOriginal(scannedImage) {
+   //          imagesScanned.push(scannedImage);
+   //      }
+   //      /** Processes a thumbnail */
+   //      function processThumbnail(scannedImage) {
+   //          // var elementImg = createDomElementFromModel( {
+   //          //     'name': 'img',
+   //          //     'attributes': {
+   //          //         'class': 'scanned',
+   //          //         'src': scannedImage.src
+   //          //     }
+   //          // });
+   //          // document.getElementById('images').appendChild(elementImg);
+   //          var tz = '<a href="#"><li><i class="fa  fa-paperclip"></i> ' +neme+ '.pdf';
+   //          var tf = '<input type="hidden" name="file_scan[]" value="'+neme+'.pdf">';
+   //          var nd = '</li></a>';
+   //          $('.thmb').append(tz+tf+nd);
+			// $('ol.txt_lampiran').append(tz+nd);
 
 
-        }
+   //      }
 
     </script>
    
@@ -190,7 +202,7 @@
 			</div>
 			<div style="display:none" class="cont_scan">
 				<h5><b>Scan Dokumen</b></h5>
-				<button class="btn btn-primary" type="button" onclick="scanToPdfWithThumbnails($('#text-no_agenda').text());"><i class="fa fa-search"></i> Scan Dokumen</button>
+				<button class="btn btn-primary" type="button" onclick="scanToPDf();"><i class="fa fa-search"></i> Scan Dokumen</button>
 				<!-- <button class="btn btn-default" type="button" onclick="$('#scan-res').show()"><i class="fa fa-eye"></i> Tampilkan Hasil Scan</button> -->
 				<br><br>
 				<div class="row">
