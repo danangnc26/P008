@@ -199,12 +199,12 @@ Class Lib{
 				// $name = 'DOC_123456.pdf';
 				if(sizeof($post['file_scan']) > 1){
 					foreach ($post['file_scan'] as $nv) {
-						rename(sys_get_temp_dir().'/'.$nv, $path.str_replace("tmp_", "doc_", $nv));
+						move_uploaded_file(sys_get_temp_dir().'/'.$nv, $path.str_replace("tmp_", "doc_", $nv));
 						$name[] = str_replace("tmp_", "doc_", $nv);
 					}
 
 				}else{
-					rename(sys_get_temp_dir().'/'.$post['file_scan'][0], $path.str_replace("tmp_", "doc_", $post['file_scan'][0]));
+					move_uploaded_file(sys_get_temp_dir().'/'.$post['file_scan'][0], $path.str_replace("tmp_", "doc_", $post['file_scan'][0]));
 					$name[] = str_replace("tmp_", "doc_", $post['file_scan'][0]);
 				}
 			}
