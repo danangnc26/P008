@@ -32,8 +32,7 @@
 	<div id="content">
 		<div id="container">
 			<div class="row">
-			<?
-			echo sys_get_temp_dir();
+			<?php
 				$page = (isset($_GET['page']))? $_GET['page'] : "main";
 				route($page);
 			?>		
