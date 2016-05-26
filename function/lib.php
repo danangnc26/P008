@@ -173,6 +173,13 @@ Class Lib{
 		{
 			$path = dirname(__DIR__).DIRECTORY_SEPARATOR."public/lampiran/";
 
+			if($_SERVER['SERVER_NAME'] != 'localhost'){
+				$tmp_dir_host = $_SERVER['DOCUMENT_ROOT'].DIRECTORY_SEPARATOR.'tmp/';
+			}else{
+				$tmp_dir_host = sys_get_temp_dir();
+			}
+			
+
 			if($post['lampiran_surat_masuk'] == 'upload'){
 
 				$name = $_FILES['file_upload']['name'];
@@ -199,13 +206,24 @@ Class Lib{
 				// $name = 'DOC_123456.pdf';
 				if(sizeof($post['file_scan']) > 1){
 					foreach ($post['file_scan'] as $nv) {
-						rename(sys_get_temp_dir().'/'.$nv, $path.str_replace("tmp_", "doc_", $nv));
-						$name[] = str_replace("tmp_", "doc_", $nv);
+						if($_SERVER['SERVER_NAME'] != 'localhost'){
+							$nff = str_replace("asprise-", "", $nv); 
+						}else{
+							$nff = str_replace("tmp_", "doc_", $nv); //LOCALHOST
+						}
+
+						rename($tmp_dir_host.'/'.$nv, $path.$nff);
+						$name[] = $nff;
 					}
 
 				}else{
-					rename(sys_get_temp_dir().'/'.$post['file_scan'][0], $path.str_replace("tmp_", "doc_", $post['file_scan'][0]));
-					$name[] = str_replace("tmp_", "doc_", $post['file_scan'][0]);
+					if($_SERVER['SERVER_NAME'] != 'localhost'){
+						$nff = str_replace("asprise-", "", $post['file_scan'][0]); 
+					}else{
+						$nff = str_replace("tmp_", "doc_", $post['file_scan'][0]); //LOCALHOST
+					}
+					rename($tmp_dir_host.'/'.$post['file_scan'][0], $path.$nff);
+					$name[] = $nff;
 				}
 			}
 			
